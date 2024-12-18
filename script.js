@@ -25,12 +25,14 @@ fetch("https://tiagobernardes.com.br/api/blog/posts.json")
             image.style.objectFit = 'cover';
 
             let = linkImagem = document.createElement('a');
+            //linkImagem.href = `single_post.html?slug=${item.slug}`
             linkImagem.href = `/blog-tb/${item.slug}`
 
             let titulo = document.createElement('h4')
             titulo.textContent = item.titulo;
 
             let = linkTitulo = document.createElement('a');
+            //linkTitulo.href = `single_post.html?slug=${item.slug}`
             linkTitulo.href = `/blog_post/${item.slug}`
             //linkTitulo.textContent = item.titulo
 
@@ -40,7 +42,8 @@ fetch("https://tiagobernardes.com.br/api/blog/posts.json")
             let botao = document.createElement('button')
             botao.id = `abrePost${index}`
             botao.textContent = "leia mais"
-            botao.onclick = () => window.location.href = `single_post.html?slug=${item.slug}`
+            //botao.onclick = () => window.location.href = `single_post.html?slug=${item.slug}`
+            botao.onclick = () => window.location.href = `/blog-tb/${item.slug}`
             botao.addEventListener("click", () => {})
             
             li.appendChild(image)
