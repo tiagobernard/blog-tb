@@ -1,6 +1,9 @@
 let blogIntegra = document.querySelector(`#singlePost`)
-const path = window.location.pathname;
-const slug = path === "/single_post.html" || path === "/blog-tb/single_post.html"
+
+const basePath = window.location.hostname === "localhost" ? "/" : "/blog-tb/"
+
+const path = window.location.pathname.replace(basePath, "")
+const slug = path.includes("single_post.html")
 ? new URLSearchParams(window.location.search).get("slug")
 : path.substring(path.lastIndexOf("/") + 1)
 console.log("Slug extraído: ", slug);
