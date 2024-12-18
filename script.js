@@ -7,7 +7,7 @@ fetch("https://tiagobernardes.com.br/api/blog/posts.json")
         return response.json();
     })
     .then(data => {
-        let sliceData = data.slice(0, 5);
+        let sliceData = data.slice(0, 3);
         let ul = document.createElement('ul');
         ul.style.display = "flex"
         ul.style.justifyContent = "space-between"
@@ -25,13 +25,13 @@ fetch("https://tiagobernardes.com.br/api/blog/posts.json")
             image.style.objectFit = 'cover';
 
             let = linkImagem = document.createElement('a');
-            linkImagem.href = `single_post.html?slug=${item.slug}`
+            linkImagem.href = `/blog-tb/${item.slug}`
 
             let titulo = document.createElement('h4')
             titulo.textContent = item.titulo;
 
             let = linkTitulo = document.createElement('a');
-            linkTitulo.href = `single_post.html?slug=${item.slug}`
+            linkTitulo.href = `/blog_post/${item.slug}`
             //linkTitulo.textContent = item.titulo
 
             let resumo = document.createElement('p')

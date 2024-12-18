@@ -1,6 +1,15 @@
 let blogIntegra = document.querySelector(`#singlePost`)
-const params = new URLSearchParams(window.location.search);
-const slug = params.get("slug");
+const path = window.location.pathname;
+const slug = path === "/single_post.html" || path === "/blog-tb/single_post.html"
+? new URLSearchParams(window.location.search).get("slug")
+: path.substring(path.lastIndexOf("/") + 1)
+console.log("Slug extraído: ", slug);
+
+function navigateToPost(slug) {
+    history.pushState({}, "", `/${slug}`);
+    window.location.href = `/single_post.html?slug=${slug}`;
+}
+
 fetch("https://tiagobernardes.com.br/api/blog/posts.json")
     .then(response => {
         if (!response.ok) {
@@ -9,7 +18,15 @@ fetch("https://tiagobernardes.com.br/api/blog/posts.json")
         return response.json();
     })
     .then(data => {
+        console.log("Dados recebidos do JSON: ", data)
+
         const post = data.find(item => item.slug === slug);
+        console.log("Post encotrado: ", post);
+
+        if(!post) {
+            blogIntegra.innerHTML = `<h1>Post não encontrado</h1>`
+        }
+
         document.title = `Blog Tiago Bernardes - ${post.titulo}`
 
         let dv = document.createElement('div')
@@ -35,10 +52,13 @@ fetch("https://tiagobernardes.com.br/api/blog/posts.json")
         titulo.textContent = `${post.titulo}`
         artigo.innerHTML = `${post.artigo}`
 
-        
         dv.appendChild(titulo)
         dv.append(imagem)
         dv.appendChild(artigo)
         dv.appendChild(voltar)
         blogIntegra.appendChild(dv)
     })
+        .catch(error => {
+            console.error("Ocorreu um erro ao carregar o post:", error.message);
+            blogIntegra.innerHTML = `<h1>Erro ao carregar o post</h1>`;
+        });

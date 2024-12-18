@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# Redireciona URLs amigáveis no formato /slug-do-post para single_post.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ single_post.html [L,QSA]
