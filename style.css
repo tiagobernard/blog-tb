@@ -1,0 +1,23 @@
+pre {
+    color:lightskyblue;
+    background-color: #333;
+    font-family: Consolas,"courier new";
+    width: fit-content;
+    padding: 20px;
+    display: inline-block;
+}
+
+#postagens, #singlePost {
+    width: 1320px;
+    margin:0 auto;
+    margin-top:100px;
+    padding-bottom: 100px;
+}
+
+#postagens ul li {
+    list-style: none;
+}
+
+#postagens a h4 {
+    padding-top: 10px;
+}
